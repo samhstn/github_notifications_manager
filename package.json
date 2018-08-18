@@ -1,0 +1,40 @@
+{
+  "name": "github_notification_manager",
+  "version": "1.0.0",
+  "repository": "tbd",
+  "description": "github_notification_manager",
+  "main": "background.js",
+  "scripts": {
+    "build": "npm run build:bs && npm run build:js",
+    "build:bs": "bsb -make-world",
+    "build:js": "rollup -c rollup.config.js",
+    "build:js:watch": "rollup -c rollup.config.js -w",
+    "build:bs:watch": "bsb -make-world -w",
+    "ghenv:start": "node github_environment/server/index.js",
+    "ghenv:start:watch": "nodemon -x 'npm run ghenv:start' -w github_environment/server",
+    "ghenv:test": "tape github_environment/server/**/*.test.js",
+    "ghenv:test:watch": "nodemon -x 'npm run ghenv:test' -w github_environment/server",
+    "ghenv:cover": "istanbul cover tape github_environment/server/**/*.test.js"
+  },
+  "keywords": [
+    "Bucklescript"
+  ],
+  "author": "samhstn",
+  "license": "ISC",
+  "dependencies": {
+    "@glennsl/bs-json": "^3.0.0",
+    "bs-fetch": "^0.3.0",
+    "bs-platform": "^4.0.5",
+    "bs-webapi": "^0.11.0",
+    "rollup": "^0.64.1",
+    "rollup-plugin-commonjs": "^9.1.5",
+    "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "devDependencies": {
+    "hapi": "^17.5.3",
+    "inert": "^5.1.0",
+    "istanbul": "^1.0.0-alpha.2",
+    "nodemon": "^1.18.3",
+    "tape": "^4.9.1"
+  }
+}

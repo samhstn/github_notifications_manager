@@ -1,0 +1,11 @@
+node_modules
+coverage
+lib/bs
+dist/background.js
+dist/content.js
+dist/popup.js
+github_environment/dist/*.js
+npm-debug.log
+.merlin
+.bsb.lock
+*.bs.js

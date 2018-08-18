@@ -1,0 +1,21 @@
+{
+  "name": "Github Notification Manager",
+  "description": "Opens github notifications",
+  "icons": {"128": "logo.png"},
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_icon": "logo.png",
+    "default_title": "Github Notification Manager",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": ["http://localhost:4444/*"],
+    "js": ["content.js"]
+  }],
+  "version": "1.0",
+  "permissions": ["tabs", "activeTab", "*://*/*"],
+  "manifest_version": 2
+}
