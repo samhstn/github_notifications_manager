@@ -111,7 +111,7 @@ const routes = [
   {
     method: 'delete',
     path: '/api/notifications',
-    handler: ({query: {repoName, id}} = request, h) => {
+    handler: ({query: {repoName, id}} = _request, h) => {
       notifications.set(deleteNotification({repoName, id: parseInt(id)}, notifications.get()));
 
       return {};
