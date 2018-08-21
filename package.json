@@ -5,9 +5,10 @@
   "description": "github_notification_manager",
   "main": "background.js",
   "scripts": {
-    "build": "npm run build:bs && npm run build:js",
+    "build": "npm run build:manifest && npm run build:js && npm run build:bs",
     "build:bs": "bsb -make-world",
     "build:js": "rollup -c rollup.config.js",
+    "build:manifest": "node src/manifest.js",
     "build:js:watch": "rollup -c rollup.config.js -w",
     "build:bs:watch": "bsb -make-world -w",
     "ghenv:start": "node github_environment/server/index.js",
@@ -28,7 +29,8 @@
     "bs-webapi": "^0.11.0",
     "rollup": "^0.64.1",
     "rollup-plugin-commonjs": "^9.1.5",
-    "rollup-plugin-node-resolve": "^3.3.0"
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-replace": "^2.0.0"
   },
   "devDependencies": {
     "hapi": "^17.5.3",

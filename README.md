@@ -16,6 +16,8 @@ git clone https://github.com/samhstn/github_notifications_manager.git
 cd github_notifications_manager
 # install dependencies
 npm install
+# source the development environment variables
+source .dev.env
 # create the bundle
 npm run build
 ```
@@ -24,6 +26,43 @@ npm run build
 + Ensure Developer mode is on
 + Click `Load Unpacked`
 + Select the `dist` directory in this repository
+
+Run the server:
+
+```bash
+npm run ghenv:start
+```
+
+The extension should work on http://localhost:4444
+
+For local development it is good to have the following commands running in separate terminal windows:
+
+```bash
+# node server
+npm run ghenv:start:watch
+```
+
+```bash
+# bucklescript compiler
+npm run build:bs:watch
+```
+
+```bash
+# javascript bundler
+npm run build:js:watch
+```
+
+### Production deployment
+
+Same as above except source the production environment variables,
+And no need to start the server
+
+```bash
+# source the development environment variables
+source .prod.env
+```
+
+The extension should work on https://github.com
 
 ### File Structure
 
@@ -37,25 +76,4 @@ npm run build
      └── public # contains html views
 ├── rollup.config.js # config for the bundling of src files
 └── README.md
-```
-
-### Environment envs
-
-For local development:
-
-```bash
-export PORT=4444
-export NOTIFICATIONS_ROUTE=/notifications.html
-export DOMAIN=http://localhost:$PORT
-export NOTIFICATION_REPO_SELECTOR=.notification-repo_link
-export NOTIFICATION_ELEMENT_SELECTOR=.list-group-item-link
-```
-
-In production:
-
-```bash
-export NOTIFICATIONS_ROUTE=/notifications
-export DOMAIN=https://github.com
-export NOTIFICATION_REPO_SELECTOR=.notification-repo_link
-export NOTIFICATION_ELEMENT_SELECTOR=.list-group-item-link
 ```

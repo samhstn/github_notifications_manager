@@ -1,3 +1,6 @@
+const GNM_DOMAIN = process.env.GNM_DOMAIN;
+const GNM_NOTIFICATIONS_ROUTE = process.env.GNM_NOTIFICATIONS_ROUTE;
+
 function readAllNotifications (_e) {
   chrome.runtime.sendMessage({name: 'read_all_notifications'});
 }
@@ -5,7 +8,7 @@ function readAllNotifications (_e) {
 chrome.extension
   .connect({name: 'tab_url'})
   .onMessage.addListener((tabUrl, _port) => {
-    if (tabUrl === 'http://localhost:4444/notifications') {
+    if (tabUrl === `${GNM_DOMAIN}${GNM_NOTIFICATIONS_ROUTE}`) {
       chrome.extension
         .connect({name: 'popup_notifications'})
         .onMessage.addListener((notifications) => {
@@ -36,7 +39,7 @@ chrome.extension
     } else {
       document.querySelector('#app').innerHTML = '<button id="to_notifications">Go to notifications</button>';
       document.querySelector('#to_notifications').addEventListener('click', (_e) => {
-        chrome.runtime.sendMessage({name: 'open_url', payload: 'http://localhost:4444/notifications'});
+        chrome.runtime.sendMessage({name: 'open_url', payload: `${GNM_DOMAIN}${GNM_NOTIFICATIONS_ROUTE}`});
       });
     }
   });

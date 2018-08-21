@@ -4,7 +4,9 @@ lib/bs
 dist/background.js
 dist/content.js
 dist/popup.js
+dist/manifest.json
 github_environment/dist/*.js
+github_environment/dist/*.js.map
 npm-debug.log
 .merlin
 .bsb.lock
