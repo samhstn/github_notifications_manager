@@ -1,6 +1,5 @@
 import replace from 'rollup-plugin-replace';
 import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
 
 const GNM_DOMAIN = process.env.GNM_DOMAIN;
 const GNM_NOTIFICATIONS_ROUTE = process.env.GNM_NOTIFICATIONS_ROUTE;
