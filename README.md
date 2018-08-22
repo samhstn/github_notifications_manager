@@ -63,17 +63,3 @@ source .prod.env
 ```
 
 The extension should work on https://github.com
-
-### File Structure
-
-```
-├── src # these files are bundled into the dist directory
-     ├── background.js # Runs in the background, this file runs once when you start chrome
-     ├── content.js # Runs once per browser tab or window
-     └── popup.js # Runs every time the browser extension icon is clicked
-├── dist # bundled extension
-├── server # used to replicate how the github webpage should behave
-     └── public # contains html views
-├── rollup.config.js # config for the bundling of src files
-└── README.md
-```
