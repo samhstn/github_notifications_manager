@@ -11,22 +11,27 @@ type notification = {
   name: string,
 }
 
-let notification = n => {
-  href: n |> Json.Decode.field("href", Json.Decode.string),
-  markAsReadUrl: n |> Json.Decode.field("markAsReadUrl", Json.Decode.string),
-  name: n |> Json.Decode.field("name", Json.Decode.string),
-}
-
 type repo = {
   repoHref: string,
   repoName: string,
   repoNotifications: array(notification),
 }
 
-let repo = r => {
-  repoHref: r |> Json.Decode.field("repoHref", Json.Decode.string),
-  repoName: r |> Json.Decode.field("repoName", Json.Decode.string),
-  repoNotifications: r |> Json.Decode.field("repoNotifications", Json.Decode.array(notification))
+module Decode = {
+  open Json.Decode;
+
+  let notification = n => {
+    href: n |> field("href", string),
+    markAsReadUrl: n |> field("markAsReadUrl", string),
+    name: n |> field("name", string),
+  }
+
+
+  let repo = r => {
+    repoHref: r |> field("repoHref", string),
+    repoName: r |> field("repoName", string),
+    repoNotifications: r |> field("repoNotifications", array(notification))
+  }
 }
 
 let repoMap = ({repoHref, repoName, repoNotifications}) => {
@@ -113,7 +118,7 @@ Js.Promise.(
   |> then_(Fetch.Response.text)
   |> then_((json) => {
     let reposList = Json.parseOrRaise(json)
-      |> Json.Decode.array(repo)
+      |> Json.Decode.array(Decode.repo)
       |> Array.map(repoMap)
       |> Js.Array.joinWith("")
 
